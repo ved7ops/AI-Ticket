@@ -9,13 +9,13 @@ export function DashboardView({ currentUser, tasks, pingbixLogs, automations, si
   const completionRate = Math.round((myTasks.filter((task) => task.status === 'completed').length / (myTasks.length || 1)) * 100);
 
   return (
-    <div className="max-w-7xl mx-auto space-y-6">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-4">
+    <div className="max-w-screen-2xl mx-auto w-full space-y-6">
+      <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end gap-4">
         <div>
-          <h1 className="text-3xl font-bold text-slate-800 tracking-tight">Workspace Dashboard</h1>
+          <h1 className="text-3xl md:text-4xl font-bold text-slate-800 tracking-tight">Workspace Dashboard</h1>
           <p className="text-slate-500 mt-1">Hello, {currentUser.name}. Here is your operational focus for today.</p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center gap-3">
           <button onClick={simulateIncomingEmail} className="bg-white border border-slate-200 text-slate-700 hover:bg-slate-50 px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-2 transition-all shadow-sm">
             <MessageSquare size={16} /> Simulate Email
           </button>
@@ -25,15 +25,15 @@ export function DashboardView({ currentUser, tasks, pingbixLogs, automations, si
         </div>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 2xl:grid-cols-4 gap-4">
         <StatCard label="My Open Tasks" value={myTasks.filter((task) => task.status !== 'completed').length} color="bg-indigo-600" icon={<CheckSquare size={20} />} />
         <StatCard label="Success Rate" value={`${completionRate}%`} color="bg-emerald-600" icon={<Activity size={20} />} />
         <StatCard label="Pingbix Alerts" value={pingbixLogs.length} color="bg-[#25D366]" icon={<MessageSquare size={20} />} />
         <StatCard label="Active Rules" value={automations.filter((automation) => automation.active).length} color="bg-purple-600" icon={<GitMerge size={20} />} />
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <div className="lg:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        <div className="xl:col-span-2 bg-white p-6 rounded-2xl shadow-sm border border-slate-200 min-w-0">
           <h3 className="text-lg font-bold mb-6 flex items-center gap-2">
             <Clock className="text-indigo-500" /> Current Workload
           </h3>
@@ -86,7 +86,7 @@ export function DashboardView({ currentUser, tasks, pingbixLogs, automations, si
           </div>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-6 min-w-0">
           <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
             <h3 className="text-lg font-bold mb-4 flex items-center gap-2">
               <MessageSquare className="text-[#25D366]" /> Recent Notifications
@@ -130,4 +130,3 @@ export function DashboardView({ currentUser, tasks, pingbixLogs, automations, si
     </div>
   );
 }
-
